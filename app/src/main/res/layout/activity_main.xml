@@ -15,4 +15,34 @@
         android:text="Base"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTipPercentLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="24%"
+        app:layout_constraintTop_toBottomOf="@+id/tvBaseLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        />
+
+    <TextView
+        android:id="@+id/tvTipLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Tip"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipPercentLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        />
+
+    <TextView
+        android:id="@+id/tvTotalLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Total"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipLabel"
+        app:layout_constraintEnd_toEndOf="@id/tvBaseLabel"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>
