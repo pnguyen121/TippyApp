@@ -48,6 +48,8 @@ class MainActivity : AppCompatActivity() {
                 Log.i(TAG, "onProgressChanged $progress")
 //                Set the tvTipPercent text too whatever the progress number is after moving the seek bar
                 tvTipPercent.text = "$progress%"
+//                run the function everytime the seekBar is changed to update UI as its moving
+                computeTipAndTotal()
             }
 
 //            Not using so leave empty
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 //             Log Info to see if its registering, s is what user is typing and is a the parameter
                 Log.i(TAG, "After Text Changed, Text Changing $s")
 
-//                ComputerTipAndTotal Function Down Below
+//              ComputeTipAndTotal Function Down Below, called after text is changed to update
                 computeTipAndTotal()
             }
 
@@ -79,16 +81,26 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+//    FUNCTION to do the math and update the UI
     private fun computeTipAndTotal() {
+//    App crashes if you back space to no amount so need to do an if check
+//    if base amount has is empty set total and tip amount to nothing and return
+//    Return hits so the rest of the function wont be executed which caused the crash
+        if(etBaseAmount.text.isEmpty()){
+            tvTotalAmount.text = ""
+            tvTipAmount.text = ""
+            return
+        }
 //     1. Get the value of the base and tip percent so we can do math
         val baseAmount = etBaseAmount.text.toString().toDouble()
         val tipPercent = seekBarTip.progress
 //     2. Do math on the tip and total
-        val tipAmount = baseAmount * tipPercent
+        val tipAmount = baseAmount * tipPercent / 100
         val totalAmount = baseAmount + tipAmount
 //     3. Showcase the tip and total on the UI
-        tvTipAmount.text = tipAmount.toString()
-        tvTotalAmount.text = totalAmount.toString()
-        TODO("Not yet implemented")
+//        %.2f is setting the format of the output we want, we only want 2 decimals
+        tvTipAmount.text = "%.2f".format(tipAmount)
+        tvTotalAmount.text = "%.2f".format(totalAmount)
+
     }
 }
