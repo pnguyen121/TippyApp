@@ -1,5 +1,6 @@
 package com.pnguyen121.tippy
 
+import android.animation.ArgbEvaluator
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,6 +9,7 @@ import android.util.Log
 import android.widget.EditText
 import android.widget.SeekBar
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 
 // Create const TAG to use with LOGS
 private const val TAG = "MainActivity"
@@ -40,7 +42,8 @@ class MainActivity : AppCompatActivity() {
         seekBarTip.progress = INITIAL_TIP_PERCENT
 //      Update percent shown to match
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
-//
+//      Set initial tip description
+        tvTipDescription.text = "Good"
 
 //        Add a listener to SEEKBAR to know when it is being changed
 //        We have to override methods that android studio helps with object is red then we go to ...
@@ -62,8 +65,16 @@ class MainActivity : AppCompatActivity() {
                     else -> "Amazing"
                 }
 
-//                set the text to whatever hits in the WHEN
+//              set the text to whatever hits in the WHEN
                 tvTipDescription.text = tipDescription
+//              Need to update the color based on the tipPercent, uses math and RGB to change color
+//               based on integer
+                val color = ArgbEvaluator().evaluate(
+                    progress.toFloat() / seekBarTip.max,
+                    ContextCompat.getColor(this@MainActivity, R.color.color_worst_tip),
+                    ContextCompat.getColor(this@MainActivity, R.color.color_best_tip),
+                ) as Int
+                tvTipDescription.setTextColor(color)
             }
 
 //            Not using so leave empty
