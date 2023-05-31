@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipPercent: TextView
     private lateinit var tvTipAmount: TextView
     private lateinit var tvTotalAmount: TextView
+    private  lateinit var tvTipDescription: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         tvTipPercent = findViewById(R.id.tvTipPercent)
         tvTipAmount = findViewById(R.id.tvTipAmount)
         tvTotalAmount = findViewById(R.id.tvTotalAmount)
+        tvTipDescription = findViewById(R.id.tvTipDescription)
 
 
 //      Set the initial tip amount before any changes
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         seekBarTip.progress = INITIAL_TIP_PERCENT
 //      Update percent shown to match
         tvTipPercent.text = "$INITIAL_TIP_PERCENT%"
+//
 
 //        Add a listener to SEEKBAR to know when it is being changed
 //        We have to override methods that android studio helps with object is red then we go to ...
@@ -50,6 +53,17 @@ class MainActivity : AppCompatActivity() {
                 tvTipPercent.text = "$progress%"
 //                run the function everytime the seekBar is changed to update UI as its moving
                 computeTipAndTotal()
+//                Update the Tip Description text based on what the tip rating and color change using WHEN and RANGE
+                val tipDescription = when (progress){
+                    in 0..9 -> "Poor"
+                    in 10..14 -> "Eh"
+                    in 15..20 -> "Good"
+                    in 20..25 -> "Great"
+                    else -> "Amazing"
+                }
+
+//                set the text to whatever hits in the WHEN
+                tvTipDescription.text = tipDescription
             }
 
 //            Not using so leave empty
