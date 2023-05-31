@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tvTipPercent: TextView
     private lateinit var tvTipAmount: TextView
     private lateinit var tvTotalAmount: TextView
-    private  lateinit var tvTipDescription: TextView
+    private lateinit var tvTipDescription: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
