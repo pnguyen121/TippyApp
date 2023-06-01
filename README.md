@@ -4,15 +4,20 @@ By Phil Nguyen
 
 Link: -> ~ <-
 
-# Tech
+## Tech
 Kotlin, Android Studio
 
 
-# Description:
+## Description:
 A quick simple Android app built with Kotlin
 
+## Future Improvements
+Add ability to split the bill by x amount of people
+Better styling
+Deploy onto android store
 
-# Screenshots:
+
+## Screenshots:
 
 # Home Page
 ![Home Page](https://imgur.com/xRXtNJW.png)
